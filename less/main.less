@@ -1,0 +1,84 @@
+html, body {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+body {
+    background: #cde;
+}
+canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    /*width: 100%;
+  height: 100%;*/
+    z-index: -1;
+}
+.controls {
+    input {
+        //width: 100px;
+        //height: 50px;
+        //font-size: 25px;
+        //display: block;
+    }
+    label {
+
+    }
+    .ui-spinner, button {
+        width: 100px;
+        height: 50px;
+    }
+    .ui-spinner {
+        .ui-spinner-input {
+            width: 100%;
+            height: 100%;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+}
+#saved {
+    display: none;
+}
+@w: 10px;
+ @h: 100px;
+ .a, .b, .c {
+    width: @w;
+    height: @h;
+    border-radius: @w/2;
+    border: 1px solid black;
+    background-color: white;
+}
+.a {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    animation: rr 4s infinite linear;
+    transform-origin: center bottom;
+}
+.b {
+    animation: rr 2s infinite linear;
+    transform-origin: center top;
+}
+.c {
+    animation: rr 1.3s infinite linear;
+    transform-origin: center bottom;
+}
+.draw, .dot {
+    background-color: red;
+    position: absolute;
+    width: @w / 2;
+    height: @w / 2;
+    border-radius: @w/4;
+}
+@keyframes rr {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
