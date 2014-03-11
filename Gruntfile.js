@@ -1,11 +1,11 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        /*livereloadx: {
+        livereloadx: {
             static: true, // livereload -s
             //proxy: "http://localhost/", //livereloadx -y http://localhost/
             dir: '.'
-        },*/
+        },
         watch: {
             scripts: {
                 files: [
@@ -15,14 +15,14 @@ module.exports = function(grunt) {
                         '!scripts/html5shiv.js',
                         '!scripts/lib/*'
                         ],
-                tasks: ['jshint', 'concat', 'uglify'],
+                tasks: ['jshint', 'concat', 'uglify', 'livereloadx'],
                 options: {
                     spawn: true,
                 },
             },
             css: {
                 files: ['less/*.less'],
-                tasks: ['less', 'autoprefixer'],
+                tasks: ['less', 'autoprefixer','livereloadx'],
                 options: {
                     spawn: true,
                 }
@@ -104,13 +104,13 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('livereloadx');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-html');
-    //grunt.loadNpmTasks('grunt-contrib-imagemin');
 
     grunt.registerTask('default', ['jshint', 'htmllint']);
 

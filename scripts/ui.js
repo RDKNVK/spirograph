@@ -1,22 +1,36 @@
 $('.clear').click(clearScreen);
-$('.spinner').spinner();
 
-$('.spinner')
-    .on('spinstop', function() {
-        var $this = $(this),
-            newRevTime = $this.val(),
-            p = $this.attr('id')[5],
-            astr = $('.a').css('-webkit-animation').split(' ');
+$('.save').click(function() {
+    window.open(canvas.toDataURL(), '_blank');
+});
+$('.pause').click(function() {
+    var $this = $(this),
+        thisText = $this.text(),
+        state = $(rods).css('animation-play-state');
 
-        //console.log($this);
-        astr[1] = newRevTime + 's';
+    if (state === 'paused') {
+        playAnim();
+        $this.text('pause');
+    } else {
+        pauseAnim();
+        $this.text('run');
+    }
+});
+$(".controls").draggable({
+    addClasses: false,
+    snap: "body" 
+});
+$spinners = $('.spinner').spinner();
 
-        $('.' + p).css({
-            '-webkit-animation': astr.join(' ')
+$("#rodOpacitySlider")
+    .slider({
+        value: 99,
+        orientation: "vertical"
+    })
+    .on('slide slidechange', function() {
+        $('.a').css({
+            'opacity': $(this).slider('value') / 100
         });
-        resetElem('.' + p);
-        
-        clearScreen();
     });
 
 $('input[type="color"]')
@@ -24,3 +38,11 @@ $('input[type="color"]')
         linecolor = $(this).val();
     });
 
+$spinners
+    .on('spinstop', function() {
+        var $this = $(this),
+            newRevTime = $this.val(),
+            thisId = $this.attr('id')[5];
+
+        changeAnimTime(thisId, newRevTime);
+    });

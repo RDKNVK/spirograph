@@ -35,28 +35,33 @@
             </div>
         </div>
         <div class="controls">
-            <button class="clear">clear</button>
-            <!--<input type="number" data-p="a" value=4 min=0>
-            <input type="number" data-p="b" value=2 min=0>
-            <input type="number" data-p="c" value=1.3 min=0>
-            -->
-            <label for="spin-a"></label>
-            <label for="spin-b"></label>
-            <label for="spin-c"></label>
-            
-            <input id="spin-a" class="spinner" name="spinner-a" value="4">
-            <input id="spin-b" class="spinner" name="spinner-b" value="2">
-            <input id="spin-c" class="spinner" name="spinner-c" value="1.3">
+            <div class="buttons">
+                <button class="clear">clear</button>
+                <button class="save">save</button>
+                <button class="pause">pause</button>
+            </div>
+            <div class="rods-control">
+                <ul class="spinners">
+                    <li>
+                        <input id="spin-a" class="spinner" name="spinner-a" value="4">
+                    </li>
+                    <li>
+                        <input id="spin-b" class="spinner" name="spinner-b" value="2">
+                    </li>
+                    <li>
+                        <input id="spin-c" class="spinner" name="spinner-c" value="1.3">
+                    </li>
+                </ul>
+                <div id="rodOpacitySlider"></div>
 
+                <label for="spin-a"></label>
+                <label for="spin-b"></label>
+                <label for="spin-c"></label>
+            </div>
         </div>
-
-        <!--<input type="color" value="#AA252D">-->
     </main>
-
     <footer>
-
     </footer>
-
     <script src="./scripts/lib/jquery.js"></script>
     <script src="./scripts/lib/jquery-ui-1.10.4.custom.min.js"></script>
     <script src="./scripts/main.js"></script>

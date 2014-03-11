@@ -4,7 +4,7 @@ html, body {
     overflow: hidden;
 }
 body {
-    background: #cde;
+    background: #dfefef;
 }
 canvas {
     position: absolute;
@@ -15,25 +15,140 @@ canvas {
     z-index: -1;
 }
 .controls {
-    input {
-        //width: 100px;
-        //height: 50px;
-        //font-size: 25px;
-        //display: block;
+    @contW: 350px;
+    @contH: 150px;
+    @bord: 2px solid black;
+    border:@bord;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 20px;
+    width: @contW;
+    height: @contH;
+    opacity: 1;
+    transition: opacity 200ms;
+    background-color: #DDD;
+    .clear();
+    [class ^="ui-"], button {
+        background: none;
+        border-radius: initial;
+        border: none;
+        font-family: inherit;
+        font-size: inherit;
+        cursor: pointer;
     }
-    label {
-
+    &:hover {
+        opacity: 1;
     }
-    .ui-spinner, button {
-        width: 100px;
-        height: 50px;
+    .spinners li, button {
+        border: 2px solid black;
+        @marg: 5px;
+        width: 100% - 2*@marg;
+        height: (@contH/3 - @marg) - @marg;
+        margin: @marg auto 0 auto;
+        &:first-child {
+            margin-top: 2*@marg;
+        }
+        &:hover {
+            font-weight: bold;
+        }
     }
-    .ui-spinner {
-        .ui-spinner-input {
-            width: 100%;
+    .buttons, .rods-control {
+        height: 100%;
+        width: 50%;
+        float: left;
+        display: inline-block;
+    }
+    .buttons {
+        .clear();
+        @marg: 5px;
+        height: 100%;
+        text-align: center;
+        button {
+            border: 2px solid black;
+            border-bottom-right-radius: 3*@marg;
+            border-top-left-radius: 3*@marg;
+            transition: border-radius 0.5s, background-color 0.5s;
+            background-color: #eee;
+            &:hover {
+                border-bottom-right-radius: 0;
+                border-top-left-radius: 0;
+                border-top-right-radius: 3*@marg;
+                border-bottom-left-radius: 3*@marg;
+                background-color: white;
+            }
+        }
+    }
+    .rods-control {
+        position: relative;
+        height: 100%;
+        input {
+        }
+        label {
+        }
+        .spinners {
             height: 100%;
-            margin-top: 0;
-            margin-bottom: 0;
+            width: 80%;
+            li {
+                display: block;
+            }
+        }
+        .ui-spinner {
+            height: 100% !important;
+            .ui-spinner-input {
+                background-color: #eee;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                text-align: center;
+            }
+            .ui-spinner-up, .ui-spinner-down {
+                height: 105%;
+                width: 40px;
+                box-sizing: content-box;
+                border-left: 2px solid black;
+                margin: -2px;
+                right: 0;
+                left: auto;
+                .ui-button-text {
+                    display: none;
+                }
+                &:after {
+                    content:'-';
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    line-height: 40px;
+                    text-align: center;
+                }
+                &:hover {
+                    background: white;
+                }
+            }
+            .ui-spinner-up {
+                border-right: 2px solid black;
+                right: auto;
+                left: 0;
+                &:after {
+                    content:'+';
+                }
+            }
+        }
+        #rodOpacitySlider {
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 100% - 20px;
+            background: #eee;
+            border-radius: 50%;
+            .ui-slider-handle {
+                //background-color: black;
+                border: 2px solid black;
+                border-radius: 50%;
+                left: -4px; 
+                margin-left: 0;
+                margin-bottom: -15px;
+            }
         }
     }
 }
@@ -48,6 +163,7 @@ canvas {
     border-radius: @w/2;
     border: 1px solid black;
     background-color: white;
+    animation-play-state: paused;
 }
 .a {
     position: absolute;
